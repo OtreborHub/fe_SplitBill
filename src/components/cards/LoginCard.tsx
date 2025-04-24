@@ -60,7 +60,7 @@ export default function LoginCard({ title, handleLogin, handleRegister}: LoginCa
                 <Box component="form" noValidate autoComplete="off" sx={{ marginBottom: 2 }}>
                 <TextField 
                     fullWidth 
-                    label="Username" 
+                    label="Email o Username" 
                     variant="outlined" 
                     margin="normal" 
                     value={username}

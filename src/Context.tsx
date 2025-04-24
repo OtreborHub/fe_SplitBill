@@ -3,8 +3,6 @@ import { Role } from "./utilities/Role";
 import Account from "./utilities/Account";
 
 const appContext = createContext({
-  updateUsername: (username: string) => {},
-  updateSessionId: (sessionId: string) => {},
   updateAccount: (account: Account) => {},
   // updateChainId: (chainId: number) => {},
   // updateSigner: (signer: string) => {},
@@ -15,8 +13,6 @@ const appContext = createContext({
   // updateRole: (role: Role) => {},
   // updateCurrentSupply: (currentSupply: number) => {},
   // updateTokenPrice: (tokenPrice: number) => {},
-  sessionId: "",
-  username: "",
   account: new Account("", ""),
   // chainId: 0,
   // signer: "",
@@ -39,10 +35,7 @@ interface AppContextProviderProps {
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
   
-  const [isLogged, setIsLogged] = useState<boolean>(false);
-  const [sessionId, setSessionId] = useState<string>("");
   const [account, setAccount] = useState<Account>(new Account("", ""));
-  const [username, setUsername] = useState<string>("");
   // const [chainId, setChainId] = useState<number>(0);
   // const [signer, setSigner] = useState<string>("")
   // const [balance, setBalance] = useState<number>(0);
@@ -54,9 +47,6 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   // const [currentSupply, setCurrentSupply] = useState<number>(0);
   // const [tokenPrice, setTokenPrice] = useState<number>(0);
 
-  function updateIsLogged(saleActive: boolean) { setIsLogged(saleActive); }
-  function updateSessionId(sessionId: string) { setSessionId(sessionId); }
-  function updateUsername(username: string) { setUsername(username); }
   function updateAccount(account: Account) { setAccount(account); } 
 
   // function updateChainId(chainId: number) { setChainId(chainId); }
@@ -79,8 +69,7 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
 
   return (
     <appContext.Provider value={{
-      updateSessionId, updateUsername,
-      updateAccount, sessionId, username, account
+       updateAccount, account
       // updateChainId, updateSigner, updateBalance, 
       // updateDNABalance, updateShares, updateRole, updateSaleActive, 
       // updateAllowance, updateCurrentSupply, updateTokenPrice,
