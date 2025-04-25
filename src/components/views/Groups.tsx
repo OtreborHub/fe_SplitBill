@@ -3,13 +3,22 @@ import Typography from "@mui/material/Typography";
 import { useAppContext } from "../../Context";
 import { useEffect, useState } from "react";
 import Group from "../../utilities/Group";
+import Accordion from "@mui/material/Accordion";
+import AccordionDetails from "@mui/material/AccordionDetails";
+import AccordionSummary from "@mui/material/AccordionSummary";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 export default function Groups() {  
-	const [groups, setGroups] = useState<Group[]>([new Group("Gruppo 1", "Descrizione Gruppo 1"), new Group("Gruppo 2", "Descrizione Gruppo 2")]);
-
 	const appContext = useAppContext();
+	const [groups, setGroups] = useState<Group[]>([]);
+
+	
 	
 	useEffect(() => {
+		setGroups([
+			new Group("Gruppo 1", "Descrizione Gruppo 1", appContext.account),
+			new Group("Gruppo 2", "Descrizione Gruppo 2", appContext.account),
+		]);
 		//chiamata a DB per recuperare i gruppi
 
 		//appContext.account.getGroups().then((groups) => {	
@@ -43,35 +52,32 @@ export default function Groups() {
 
 			<Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, textAlignLast: 'end' }}>
 				{groups.map((group, index) => (
-					<Box
-						key={index}
-						sx={{
-							border: 1,
-							borderColor: 'grey.400',
-							padding: 2,
-							borderRadius: 1,
-							display: 'flex',
-							alignItems: 'center',
-							justifyContent: 'space-between',
-						}}
-					>
-						<Box sx={{ textAlign: 'right', flex: 1 }}>
-							<Typography variant="h6" component="h2" sx={{ fontWeight: 'bold' }}>
-								{group.getName()}
-							</Typography>
-							<Typography variant="body1">{group.getDescription()}</Typography>
-						</Box>
-						<Box
-							component="img"
-							src={group.getImage()}
-							alt="Group"
-							sx={{
-								width: 50,
-								height: 50,
-								marginLeft: 2,
-								borderRadius: '50%',
-							}}
-						/>
+					<Box key={index}>
+						<Accordion>
+							<AccordionSummary
+								expandIcon={<ExpandMoreIcon />}
+								aria-controls={`panel${index}-content`}
+								id={`panel${index}-header`}
+							>
+								<Typography variant="h6" component="h2" sx={{ fontWeight: 'bold' }}>
+									{group.getName()}
+								</Typography>
+							</AccordionSummary>
+							<AccordionDetails>
+								<Typography variant="body1">{group.getDescription()}</Typography>
+								<Box
+									component="img"
+									src={group.getImage()}
+									alt="Group"
+									sx={{
+										width: 50,
+										height: 50,
+										marginTop: 2,
+										borderRadius: '50%',
+									}}
+								/>
+							</AccordionDetails>
+						</Accordion>
 					</Box>
 				))}
 			</Box>

@@ -7,11 +7,13 @@ export default class Group {
     private description: string;
     private image: string = "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
     private members: Account[];
+    private admins: Account[];
 
-    public constructor(groupName: string, description: string) {
+    public constructor(groupName: string, description: string, admin: Account) {
         this.name = groupName;
         this.description = description;
         this.members = [];
+        this.admins = [admin]
     }
 
     public getName(): string {
@@ -42,10 +44,16 @@ export default class Group {
         this.description = description;
     }
     
-    public addUser(user: Account): void {
+    public addMember(user: Account): void {
         this.members.push(user);
     }
-    public removeUser(user: Account): void {
-        // Remove user from the group
+    public removeMember(user: Account): void {
+        this.members = this.members.filter(member => member !== user);
     }
+    public addAdmin(user: Account): void {
+        this.admins.push(user);
+    }
+    public removeAdmin(user: Account): void {
+        this.admins = this.admins.filter(admin => admin !== user);
+    }   
 }

@@ -47,18 +47,6 @@ export default function App() {
     });
   }
 
-  const handleChanges = () => {
-  };
-
-  const handleAccountChanges = async (accounts:any) => {
-    if (accounts.length === 0) {
-      console.log("Please connect to Metamask.");
-      //disconnect();
-    } else {
-      //await connectWallet();
-    }
-  };
-
   function login(sessionId: string, username: string) {
     if (sessionId) {
       var account = new Account(username, sessionId);
@@ -69,8 +57,8 @@ export default function App() {
     }
   }
 
-  function register(username: string, password: string){
-    console.log("Register clicked");
+  function register(email: string, password: string){
+    console.log("Register clicked:" + email + " " + password);
   }
 
   function logout(){
