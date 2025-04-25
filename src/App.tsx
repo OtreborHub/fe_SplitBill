@@ -192,42 +192,54 @@ export default function App() {
           {/* <Box 
             sx={{ paddingTop: "5rem", paddingBottom: "2rem" }} 
           /> */}
-
-          {/* {!appContext.isLogged &&
-          
-            <LoginCard
-              title="Login"
-              handleLogin={login}
-              handleRegister={register}/>
-          } */}
         
           {logged() &&
           <>
             <Box sx={{ display: "flex" }}>
-              <Drawer
-                variant="permanent"
-                PaperProps={{
-                  sx: { backgroundColor: "#1e1e1e", color: "white", width: "15rem" },
-                }}
-              >
-                <MenuSidebar handleLogout={logout} handleNavigate={navigate} />
-              </Drawer>
+              {midSmallScreen ? (
+                <Box
+                  sx={{
+                    position: "fixed",
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                    backgroundColor: "#1e1e1e",
+                    color: "white",
+                    display: "flex",
+                    justifyContent: "center",
+                    padding: "1rem",
+                  }}
+                >
+                  <MenuSidebar handleLogout={logout} handleNavigate={navigate} />
+                </Box>
+              ) : (
+                <Drawer
+                  variant="permanent"
+                  PaperProps={{
+                    sx: { backgroundColor: "#1e1e1e", color: "white", width: "15rem" },
+                  }}
+                >
+                  <MenuSidebar handleLogout={logout} handleNavigate={navigate} />
+                </Drawer>
+              )}
 
               <Box sx={{ flexGrow: 1, padding: "1rem", maxWidth: "75%", marginLeft: "auto" }}>
+                
                 {path === "" && (
                   <Typography
                     className="baloo2"
                     variant="h5"
                     textAlign="right"
                     marginBottom={2}
-                    sx={{ fontWeight: "bold", color: "white" }}
-                  >
+                    sx={{ fontWeight: "bold", color: "white" }}>
                     {midSmallScreen
                       ? "mini"
                       : "Dai uno sguardo alla sidebar per scoprire le funzionalità disponibili"}
                   </Typography>
                 )}
+
                 {path === "groups" && <Groups />}
+                {/* {path === "balance" && <Balance />} */}
               </Box>
             </Box>
             </>
