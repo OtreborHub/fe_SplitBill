@@ -211,7 +211,7 @@ export default function App() {
                 </Drawer>
               )}
 
-              <Box sx={{ flexGrow: 1, padding: "1rem", maxWidth: "75%", marginLeft: "auto" }}>
+              <Box sx={{ flexGrow: 1, padding: "1rem", maxWidth: midSmallScreen ? "100%" : "75%", marginLeft: "auto" }}>
                 
                 {path === "" && (
                   <Typography

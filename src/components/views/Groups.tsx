@@ -54,28 +54,33 @@ export default function Groups() {
 				{groups.map((group, index) => (
 					<Box key={index}>
 						<Accordion>
-							<AccordionSummary
-								expandIcon={<ExpandMoreIcon />}
-								aria-controls={`panel${index}-content`}
-								id={`panel${index}-header`}
-							>
-								<Typography variant="h6" component="h2" sx={{ fontWeight: 'bold' }}>
-									{group.getName()}
-								</Typography>
-							</AccordionSummary>
+              <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls={`panel${index}-content`}
+                id={`panel${index}-header`}
+                sx={{ justifyContent: 'flex-end', textAlign: 'right' }}
+              >
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-end', width: '100%' }}>
+                  <Box sx={{ marginRight: 2, textAlign: 'right', flex: 1 }}>
+                  <Typography variant="h6" component="h2" sx={{ fontWeight: 'bold' }}>
+                    {group.getName()}
+                  </Typography>
+                  <Typography variant="body1">{group.getDescription()}</Typography>
+                  </Box>
+                  <Box
+                  component="img"
+                  src={group.getImage()}
+                  alt="Group"
+                  sx={{
+                    width: 50,
+                    height: 50,
+                    borderRadius: '50%',
+                  }}
+                  />
+                </Box>
+              </AccordionSummary>
 							<AccordionDetails>
-								<Typography variant="body1">{group.getDescription()}</Typography>
-								<Box
-									component="img"
-									src={group.getImage()}
-									alt="Group"
-									sx={{
-										width: 50,
-										height: 50,
-										marginTop: 2,
-										borderRadius: '50%',
-									}}
-								/>
+								
 							</AccordionDetails>
 						</Accordion>
 					</Box>
