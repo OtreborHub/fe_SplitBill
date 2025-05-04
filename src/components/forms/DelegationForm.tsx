@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { DelegationFormProps } from '../../utilities/interfaces';
-import { Action } from '../../utilities/actions';
+import { Action } from '../../utilities/Actions';
 
 
 export default function SimpleForm({ delegationType, handleSubmitDelegation }: DelegationFormProps) {

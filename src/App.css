@@ -16,7 +16,6 @@
 
 .main-div {
   min-height: 100vh;
-  align-items: left;
   font-size: calc(10px + 2vmin);
   background: radial-gradient(circle, #d3d3d3, #2b2b28 65%);
   transition: background 0.5s linear;

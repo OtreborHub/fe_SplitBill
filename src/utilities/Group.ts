@@ -1,11 +1,9 @@
 import Account from "./Account";
 
 export default class Group {
-    // Group class to represent a group of users
-    // It contains the group name, description, and a list of users in the group
     private name: string;
     private description: string;
-    private image: string = "https://cdn-icons-png.flaticon.com/512/1946/1946429.png";
+    private image: string = "https://cdn-icons-png.flaticon.com/512/847/847969.png";
     private members: Account[];
     private admins: Account[];
 
@@ -40,6 +38,14 @@ export default class Group {
         this.name = name;
     }
 
+    public getAdmins(): Account[] {
+        return this.admins; 
+    }
+
+    public getMembers(): Account[] {
+        return this.members;    
+    }
+
     public setDescription(description: string): void { 
         this.description = description;
     }
@@ -50,6 +56,7 @@ export default class Group {
     public removeMember(user: Account): void {
         this.members = this.members.filter(member => member !== user);
     }
+
     public addAdmin(user: Account): void {
         this.admins.push(user);
     }

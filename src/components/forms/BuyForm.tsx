@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Action } from '../../utilities/actions';
+import { Action } from '../../utilities/Actions';
 import { BuyFormProps } from '../../utilities/interfaces';
 
 

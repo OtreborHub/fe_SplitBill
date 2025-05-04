@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { Action } from "./actions";
+import { Action } from "./Actions";
 
 export enum ErrorMessage {
 

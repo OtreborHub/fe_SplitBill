@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useAppContext } from '../Context';
 import { Role } from '../utilities/Role';
-import { Action } from '../utilities/actions';
+import { Action } from '../utilities/Actions';
 import { formatWeiBalance } from '../utilities/helper';
 import { SidebarProps } from '../utilities/interfaces';
 import Loader from './Loader';

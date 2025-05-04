@@ -1,9 +1,8 @@
 
-import { Action } from "./actions";
+import { Action } from "./Actions";
 import { ErrorMessage } from "./Error";
 
 interface LoginCardProps {
-    title: string;
     handleLogin: (sessionId: string, username: string) => void;
     handleRegister: (username: string, password: string) => void;
 }

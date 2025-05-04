@@ -28,17 +28,17 @@ export default function App() {
   const MySwal = withReactContent(Swal);
 
   useEffect(() => {
-    if(!logged()){
-      renderLoginCard();
-    }else{
-      MySwal.close();
+    if (appContext.account.getSessionId()) {
+      MySwal.close(); 
+    } else {
+      renderLoginCard(); 
     }
   }, [appContext.account]);
 
 
   function renderLoginCard() {
     MySwal.fire({
-      html: <LoginCard title="Login" handleLogin={login} handleRegister={register} />,
+      html: <LoginCard handleLogin={login} handleRegister={register} />,
       showConfirmButton: false,
       allowOutsideClick: false,
       customClass: {
@@ -71,11 +71,8 @@ export default function App() {
     console.log("Navigate to: " + path);
   }
 
-  const logged = () => {
-    return appContext.account.getSessionId() !== "";
-  }
 
-   async function connectWallet() {
+  //async function connectWallet() {
   //   try{
   //     if(window.ethereum){
   //         const provider = new ethers.BrowserProvider(window.ethereum);
@@ -105,7 +102,7 @@ export default function App() {
   //     disconnect();
   //     console.log("Error retrieving BrowserProvider");
   //   }
-   }
+  // }
 
   // async function disconnect() {
   //   appContext.updateSigner("");
@@ -175,13 +172,13 @@ export default function App() {
 
         <Navbar/>
         
-        <div className={`main-div ${logged() ? 'logged-in' : ''}`}>
+        <div className={`main-div ${appContext.account.getSessionId() ? 'logged-in' : ''}`}>
           
           {/* <Box 
             sx={{ paddingTop: "5rem", paddingBottom: "2rem" }} 
           /> */}
         
-          {logged() &&
+          {appContext.account.getSessionId() &&
           <>
             <Box sx={{ display: "flex" }}>
               {midSmallScreen ? (
@@ -196,6 +193,8 @@ export default function App() {
                     display: "flex",
                     justifyContent: "center",
                     padding: "1rem",
+                    height: "80px", // Altezza fissa per la barra inferiore
+                    zIndex: 1000, // Assicurati che sia sopra il contenuto
                   }}
                 >
                   <MenuSidebar handleLogout={logout} handleNavigate={navigate} />
@@ -211,7 +210,16 @@ export default function App() {
                 </Drawer>
               )}
 
-              <Box sx={{ flexGrow: 1, padding: "1rem", maxWidth: midSmallScreen ? "100%" : "75%", marginLeft: "auto" }}>
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  padding: "1rem",
+                  maxWidth: midSmallScreen ? "100%" : "75%",
+                  marginLeft: "auto",
+                  marginBottom: midSmallScreen ? "2rem" : "0",
+                  overflowY: "auto"
+                }}
+              >
                 
                 {path === "" && (
                   <Typography

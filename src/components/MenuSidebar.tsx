@@ -31,10 +31,12 @@ export default function MenuSidebar({ handleLogout, handleNavigate }: SidebarPro
 				display: "flex",
 				flexDirection: midSmallScreen ? "row" : "column",
 				alignItems: "center",
-				justifyContent: midSmallScreen ? "space-around" : "flex-start",
+				justifyContent: midSmallScreen ? "center" : "flex-start",
 				width: midSmallScreen ? "100%" : "auto",
 			}}
 		>
+			{!midSmallScreen && 
+			<>
 			<img
 				src={logo}
 				alt="Logo"
@@ -46,18 +48,19 @@ export default function MenuSidebar({ handleLogout, handleNavigate }: SidebarPro
 				}}
 				onClick={() => handleNavigate("")}
 			/>
-			{!midSmallScreen && (
 				<Divider
 					style={{
 						height: "1px",
-						background: "linear-gradient(90deg, #00ffff, #6001d4, #000000)",
+						background: "linear-gradient(90deg, #00ffff, #5a24cb, #000000)",
 						width: "100%",
 					}}
 				/>
-			)}
+			</>
+			}
 			<List
 				sx={{
 					display: "flex",
+					justifyContent: midSmallScreen ? "space-between" : "flex-start",
 					flexDirection: midSmallScreen ? "row" : "column",
 					padding: 0,
 				}}
