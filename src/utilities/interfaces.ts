@@ -1,5 +1,5 @@
 
-import { Action } from "./Actions";
+import { Actions } from "./Actions";
 import { ErrorMessage } from "./Error";
 
 interface LoginCardProps {
@@ -27,7 +27,7 @@ interface ProposalFormProps {
 }
 
 interface BuyFormProps {
-    buyType: Action;
+    buyType: Actions;
     handleSubmit: (amount: number, buyTipe: string) => void;
     handleChange: (amount: number, buyTipe: string) => number;
     DNABalance?: number;

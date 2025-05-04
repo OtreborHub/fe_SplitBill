@@ -1,6 +1,6 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Action } from '../../utilities/Actions';
+import { Actions } from '../../utilities/Actions';
 import { BuyFormProps } from '../../utilities/interfaces';
 
 
@@ -20,39 +20,39 @@ export default function BuyForm ({ buyType, handleSubmit, handleChange, DNABalan
   return (
     <Box component="form" onSubmit={submit} sx={{ p: 2 }}>
       <Typography variant="body1" gutterBottom>
-        {buyType === Action.BUY_DNA && 
+        {buyType === Actions.BUY_DNA && 
         "Scegli una quantità in wei da trasformare in DNA ( " + tokenPrice + " wei per DNA Token)" 
         }
-        {buyType === Action.BUY_SHARES && 
+        {buyType === Actions.BUY_SHARES && 
         "Scegli una quantità in DNA da trasformare in Shares"
         }
-        {buyType === Action.APPROVE_DNA && 
+        {buyType === Actions.APPROVE_DNA && 
         "Scegli una quantità in DNA da approvare per l'acquisto di Shares"
         }
-        {buyType === Action.UPDATE_PRICE && 
+        {buyType === Actions.UPDATE_PRICE && 
         "Scegli il nuovo prezzo per i DNA Token"
         }
       </Typography>
       <TextField
         type="number"
-        placeholder={buyType === Action.BUY_DNA ? 
+        placeholder={buyType === Actions.BUY_DNA ? 
           "Max " + currentSupply + " DNA" : 
-          buyType === Action.BUY_SHARES ? 
+          buyType === Actions.BUY_SHARES ? 
           "Max " + DNABalance + " Shares" : 
-          buyType === Action.APPROVE_DNA ?
+          buyType === Actions.APPROVE_DNA ?
           "Max " + DNABalance + " DNA" : 
-          buyType === Action.UPDATE_PRICE ?
+          buyType === Actions.UPDATE_PRICE ?
           "default 1 wei" : ""}
         value={inputValue}
         onChange={change}
         fullWidth
         margin="normal"
         id="range-value"
-        label={buyType === Action.BUY_DNA ? 
+        label={buyType === Actions.BUY_DNA ? 
           "Quantità (in wei)" : 
-          buyType === Action.BUY_SHARES || buyType === Action.APPROVE_DNA ? 
+          buyType === Actions.BUY_SHARES || buyType === Actions.APPROVE_DNA ? 
           "Quantità (in DNA)" : 
-          buyType === Action.UPDATE_PRICE ?
+          buyType === Actions.UPDATE_PRICE ?
           "Quantità (in wei)" : ""}
       />
       <Box mt={2}>

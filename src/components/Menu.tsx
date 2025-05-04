@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useAppContext } from '../Context';
 import { Role } from '../utilities/Role';
-import { Action } from '../utilities/Actions';
+import { Actions } from '../utilities/Actions';
 import { formatWeiBalance } from '../utilities/helper';
 import { SidebarProps } from '../utilities/interfaces';
 import Loader from './Loader';
@@ -41,7 +41,7 @@ export default function DropdownMenu({ handleLogout }: SidebarProps) {
       title: "Delega Membro",
       icon: "question",
       html: <DelegationForm 
-        delegationType={Action.DELEGATE_MEMBER} 
+        delegationType={Actions.DELEGATE_MEMBER} 
         handleSubmitDelegation={handleSubmitDelegation}/>,
       showConfirmButton: false,
       showCloseButton: true,
@@ -53,7 +53,7 @@ export default function DropdownMenu({ handleLogout }: SidebarProps) {
       title: "Revoca Delega Membro",
       icon: "question",
       html: <DelegationForm 
-        delegationType={Action.REVOKE_DELEGATE} 
+        delegationType={Actions.REVOKE_DELEGATE} 
         handleSubmitDelegation={handleSubmitDelegation}/>,
       showConfirmButton: false,
       showCloseButton: true,

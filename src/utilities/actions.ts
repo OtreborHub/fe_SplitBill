@@ -1,4 +1,4 @@
-export enum Action {
+export enum Actions {
   
   RD_DATA="Lettura dati dal contratto",
 

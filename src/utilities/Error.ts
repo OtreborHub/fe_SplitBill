@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { Action } from "./Actions";
+import { Actions } from "./Actions";
 
 export enum ErrorMessage {
 
@@ -39,7 +39,7 @@ export function transformMessage(message: ErrorMessage){
     return message.split("]");
 }
 
-export function swalError(errorMessage: ErrorMessage, action?: Action, error?: any){
+export function swalError(errorMessage: ErrorMessage, action?: Actions, error?: any){
     let shortMessage = "";
     let title = "";
     let text = "";
@@ -66,10 +66,10 @@ export function swalError(errorMessage: ErrorMessage, action?: Action, error?: a
             break;
 
         case ErrorMessage.TR:
-            if (action && action === Action.EXECUTE_PROP) {
+            if (action && action === Actions.EXECUTE_PROP) {
                 title = "Esecuzione della proposta non riuscita";
                 text = "Si prega di riprovare più tardi."
-            } else if (action && (action === Action.DELEGATE_MEMBER || action === Action.REVOKE_DELEGATE)) {
+            } else if (action && (action === Actions.DELEGATE_MEMBER || action === Actions.REVOKE_DELEGATE)) {
                 title = "Modifica delle deleghe non riuscita";
                 text = "Si prega di riprovare più tardi."
             } else if(action){
@@ -82,16 +82,16 @@ export function swalError(errorMessage: ErrorMessage, action?: Action, error?: a
 
         case ErrorMessage.IF:
             title = "Saldo Insufficiente!";
-            if (action && action === Action.BUY_SHARES) {
+            if (action && action === Actions.BUY_SHARES) {
                 text = "Verifica che il tuo saldo sia sufficiente, o rivedi la quantità di Shares inserite.";
-            } else if (action && action === Action.BUY_DNA){
+            } else if (action && action === Actions.BUY_DNA){
                 text = "Verifica che il tuo saldo sia sufficiente, o rivedi la quantità di wei inserita";
             }
             break;
 
         case ErrorMessage.SENDER_IS_OWNER:
             title = "Operazione non permessa";
-            if(action && action === Action.BUY_SHARES){
+            if(action && action === Actions.BUY_SHARES){
                 text = "L'Owner non può comprare DNA Shares!"
             }
             break;
