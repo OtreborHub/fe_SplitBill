@@ -14,6 +14,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import Account from "./utilities/Account";
 import Groups from "./components/views/Groups";
+import GroupDetail from "./components/views/GroupDetail";
+import Balance from "./components/views/Balance";
+import Settings from "./components/views/Settings";
 
 
 
@@ -234,8 +237,10 @@ export default function App() {
                   </Typography>
                 )}
 
-                {path === "groups" && <Groups />}
-                {/* {path === "balance" && <Balance />} */}
+                {path === "groups" && <Groups handleNavigate={navigate}/>}
+                {path.startsWith("group/") && <GroupDetail />}
+                {path === "balance" && <Balance />}
+                {path === "settings" && <Settings />}
               </Box>
             </Box>
             </>

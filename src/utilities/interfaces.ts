@@ -1,5 +1,6 @@
 
 // import { Actions } from "./Actions";
+import DTOGroup from "./DTOGroup";
 import { ErrorMessage } from "./Error";
 
 interface LoginCardProps {
@@ -9,6 +10,15 @@ interface LoginCardProps {
 
 interface SidebarProps {
     handleLogout: () => void;
+    handleNavigate: (view: string) => void;
+}
+
+interface NavigateProps {
+    handleNavigate: (view: string) => void;
+}
+
+interface GroupProps {
+    group: DTOGroup;
     handleNavigate: (view: string) => void;
 }
 
@@ -62,4 +72,4 @@ interface LoaderProps {
     loading: boolean
 }
 
-export type { SidebarProps, LoginCardProps, NewMemberProps, ProposalProps, Proposal, CustomSelectProps, ProposalFormProps, BuyFormProps, LoaderProps, DelegationFormProps }
+export type { SidebarProps, LoginCardProps, GroupProps, NavigateProps, NewMemberProps, ProposalProps, Proposal, CustomSelectProps, ProposalFormProps, BuyFormProps, LoaderProps, DelegationFormProps }

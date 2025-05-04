@@ -1,17 +1,26 @@
 import Account from "./Account";
 
 export default class Group {
+    private id: number = -1;
     private name: string;
     private description: string;
     private image: string = "https://cdn-icons-png.flaticon.com/512/847/847969.png";
     private members: Account[];
     private admins: Account[];
 
-    public constructor(groupName: string, description: string, admin: Account) {
+    public constructor(id: number, groupName: string, description: string, admin: Account) {
         this.name = groupName;
         this.description = description;
         this.members = [];
         this.admins = [admin]
+    }
+
+    public getId(): number {
+        return this.id;
+    }
+
+    public setId(id: number): void {
+        this.id = id;
     }
 
     public getName(): string {
