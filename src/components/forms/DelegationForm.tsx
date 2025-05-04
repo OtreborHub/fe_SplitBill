@@ -1,7 +1,7 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 import { DelegationFormProps } from '../../utilities/interfaces';
-import { Actions } from '../../utilities/Actions';
+// import { Actions } from '../../utilities/Actions';
 
 
 export default function SimpleForm({ delegationType, handleSubmitDelegation }: DelegationFormProps) {
@@ -18,7 +18,7 @@ export default function SimpleForm({ delegationType, handleSubmitDelegation }: D
 
   return (
     <Box component="form" onSubmit={submit} sx={{ p: 2 }}>
-      <Typography variant="body1" gutterBottom>
+      {/* <Typography variant="body1" gutterBottom>
         {delegationType === Actions.DELEGATE_MEMBER &&
         "Inserisci l'indirizzo del membro a cui delegare il voto"
         }
@@ -40,7 +40,7 @@ export default function SimpleForm({ delegationType, handleSubmitDelegation }: D
         <Button type="submit" variant="contained" color="primary" fullWidth>
           Conferma
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

@@ -1,25 +1,25 @@
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
-import { Actions } from '../../utilities/Actions';
+// import { Actions } from '../../utilities/Actions';
 import { BuyFormProps } from '../../utilities/interfaces';
 
 
-export default function BuyForm ({ buyType, handleSubmit, handleChange, DNABalance, currentSupply, tokenPrice } : BuyFormProps) {
+export default function BuyForm ({ handleSubmit, handleChange, DNABalance, currentSupply, tokenPrice } : BuyFormProps) {
   const [inputValue, setInputValue] = useState<number>(1);
 
   const change = (event: any) => {
-    const value = handleChange(event.target.value, buyType);
+    const value = handleChange(event.target.value);
     setInputValue(value);
   };
 
   const submit = (event: any) => {
     event.preventDefault();
-    handleSubmit(inputValue, buyType);
+    handleSubmit(inputValue);
   };
 
   return (
     <Box component="form" onSubmit={submit} sx={{ p: 2 }}>
-      <Typography variant="body1" gutterBottom>
+      {/* <Typography variant="body1" gutterBottom>
         {buyType === Actions.BUY_DNA && 
         "Scegli una quantità in wei da trasformare in DNA ( " + tokenPrice + " wei per DNA Token)" 
         }
@@ -59,7 +59,7 @@ export default function BuyForm ({ buyType, handleSubmit, handleChange, DNABalan
         <Button type="submit" variant="contained" color="primary" fullWidth>
           Conferma
         </Button>
-      </Box>
+      </Box> */}
     </Box>
   );
 };

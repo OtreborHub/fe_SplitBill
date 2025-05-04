@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useAppContext } from '../Context';
 import { Role } from '../utilities/Role';
-import { Actions } from '../utilities/Actions';
+//import { Actions } from '../utilities/Actions';
 import { formatWeiBalance } from '../utilities/helper';
 import { SidebarProps } from '../utilities/interfaces';
 import Loader from './Loader';
@@ -37,28 +37,28 @@ export default function DropdownMenu({ handleLogout }: SidebarProps) {
   }
 
   function delegateVoteToMember() {
-    MySwal.fire({
-      title: "Delega Membro",
-      icon: "question",
-      html: <DelegationForm 
-        delegationType={Actions.DELEGATE_MEMBER} 
-        handleSubmitDelegation={handleSubmitDelegation}/>,
-      showConfirmButton: false,
-      showCloseButton: true,
-    })
+    // MySwal.fire({
+    //   title: "Delega Membro",
+    //   icon: "question",
+    //   html: <DelegationForm 
+    //     delegationType={Actions.DELEGATE_MEMBER} 
+    //     handleSubmitDelegation={handleSubmitDelegation}/>,
+    //   showConfirmButton: false,
+    //   showCloseButton: true,
+    // })
   }
 
-  function revokeDelegation() {
-    MySwal.fire({
-      title: "Revoca Delega Membro",
-      icon: "question",
-      html: <DelegationForm 
-        delegationType={Actions.REVOKE_DELEGATE} 
-        handleSubmitDelegation={handleSubmitDelegation}/>,
-      showConfirmButton: false,
-      showCloseButton: true,
-    })
-  }
+  // function revokeDelegation() {
+  //   MySwal.fire({
+  //     title: "Revoca Delega Membro",
+  //     icon: "question",
+  //     html: <DelegationForm 
+  //       delegationType={Actions.REVOKE_DELEGATE} 
+  //       handleSubmitDelegation={handleSubmitDelegation}/>,
+  //     showConfirmButton: false,
+  //     showCloseButton: true,
+  //   })
+  // }
 
   function buyDNA() {
 		// if (appContext.balance > 0) {
