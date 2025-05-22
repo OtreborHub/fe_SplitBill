@@ -13,6 +13,7 @@ export default function LoginCard({ handleLogin, handleRegister }: LoginCardProp
 	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [userRegistered, setUserRegistered] = useState<string>("");
+	const [errorMessage, setErrorMessage] = useState<string>("");
 
 	function login() {
 
@@ -21,7 +22,7 @@ export default function LoginCard({ handleLogin, handleRegister }: LoginCardProp
 			console.log("Login successful");
 			handleLogin(sessionId, username);
 		} else {
-			fetch("http://localhost:8080/auth/login", {
+			fetch("https://javaws.up.railway.app/auth/login", {
 				method: "POST",
 				headers: {
 					"Content-Type": "application/json",
@@ -36,27 +37,12 @@ export default function LoginCard({ handleLogin, handleRegister }: LoginCardProp
 						handleLogin(sessionId, username);
 					} else {
 						const errorData = await response.json();
-						Swal.fire({
-							icon: "error",
-							title: "Login failed",
-							text: errorData.message || "Invalid credentials",
-							showCloseButton: true,
-							showConfirmButton: true,
-							confirmButtonColor: "#3085d6",
-							confirmButtonText: "OK"
-						});
+						setErrorMessage(errorData.message || "Credenziali non valide");
+						console.error(errorData.message || "Invalid credentials");
 					}
 				})
 				.catch((error) => {
-					Swal.fire({
-						icon: "error",
-						title: "Login failed",
-						text: "An error occurred while logging in",
-						showCloseButton: true,
-						showConfirmButton: true,
-						confirmButtonColor: "#3085d6",
-						confirmButtonText: "OK"
-					});
+					setErrorMessage("Login error:" + error);
 					console.error("Login error:", error);
 				});
 		}
@@ -83,28 +69,13 @@ export default function LoginCard({ handleLogin, handleRegister }: LoginCardProp
 
 				} else {
 					const errorData = await response.json();
-					Swal.fire({
-						icon: "error",
-						title: "Registrazione fallita",
-						text: errorData.message || "Errore durante la registrazione",
-						showCloseButton: true,
-						showConfirmButton: true,
-						confirmButtonColor: "#3085d6",
-						confirmButtonText: "OK"
-					});
+					setErrorMessage(errorData.message || "Errore durante la registrazione");
+					console.error(errorData.message || "Errore durante la registrazione");
 				}
 			})
 			.catch((error) => {
-				Swal.fire({
-					icon: "error",
-					title: "Registrazione fallita",
-					text: "Si è verificato un errore durante la registrazione",
-					showCloseButton: true,
-					showConfirmButton: true,
-					confirmButtonColor: "#3085d6",
-					confirmButtonText: "OK"
-				});
-				console.error("Registration error:", error);
+				setErrorMessage(error || "Errore durante la registrazione");
+				console.error(error || "Errore durante la registrazione");
 			});
 	}
 
@@ -129,7 +100,7 @@ export default function LoginCard({ handleLogin, handleRegister }: LoginCardProp
 					Effettua l'accesso o registrati per gestire le tue spese in modo semplice e veloce.
 				</Typography>
 
-				{userRegistered != "" && (
+				{userRegistered !== "" && (
 					<Box sx={{ marginBottom: 3, textAlign: 'center' }}>
 						<Typography
 							className="baloo2"
@@ -138,6 +109,16 @@ export default function LoginCard({ handleLogin, handleRegister }: LoginCardProp
 							{userRegistered} registrato!
 						</Typography>
 					</Box>)}
+
+				{errorMessage !== "" && (
+					<Box sx={{ marginBottom: 3, textAlign: 'center' }}>
+						<Typography
+							className="baloo2"
+							variant="body1"
+							sx={{ color: '#DB3A34', fontWeight: 'bold' }}>
+							{errorMessage}
+						</Typography>
+					</Box>)}	
 
 				<Box component="form" noValidate autoComplete="off" sx={{ marginBottom: 2 }}>
 					<TextField
